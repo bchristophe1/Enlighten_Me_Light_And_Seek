@@ -3,6 +3,8 @@
 #include <QList>
 #include <QString>
 #include <QObject>
+#include <QFile>
+#include <QJsonDocument>
 
 #include "helper_macro.h"
 #include "group.h"
@@ -22,12 +24,17 @@ public:
 
     QString GetDataFilePath();
 
+    QJsonDocument jsonDocument() const;
+    void setJsonDocument(const QJsonDocument &jsonDocument);
+
 public slots:
     void on_loadFileRequest();
     void on_saveFileRequest();
 
 private:
     QString _dataFilePath;
+    QFile _jsonFile;
+    QJsonDocument _jsonDocument;
     unsigned int _groupCounter;
     unsigned int _userCounter;
 

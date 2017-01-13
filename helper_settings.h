@@ -1,6 +1,6 @@
 #pragma once
 
-#define DATA_FILE_PATH "C:\\rocket\\raccoon.json"
+#define DATA_FILE_PATH ":/json/file.json"
 
 #define GROUPS_NUMBER 7
 #define USERS_PER_GROUP 13
