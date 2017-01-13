@@ -1,0 +1,62 @@
+{
+  "groups": [
+    {
+      "id" : "1",
+      "name": "group1",
+      "creationDateGroup" : "2016-21-11 14:56",
+      "lastUpdateDateGroup" : "2016-21-11 : 15:09",
+      "bracelets" : [
+        {
+          "id" : "765",
+          "creationDateBracelet" : "2016-21-11 13:46",
+          "lastUpdateDateBracelet" : "2016-21-11 : 14:19",
+          "name" : "jean DUPONT",
+          "color" : "#FFFFFF"
+        },
+        {
+          "id" : "765",
+          "creationDateBracelet" : "2016-21-11 13:46",
+          "lastUpdateDateBracelet" : "2016-21-11 : 14:19",
+          "name" : "jean DUPONT",
+          "color" : "#FFFFFF"
+        },
+        {
+          "id" : "765",
+          "creationDateBracelet" : "2016-21-11 13:46",
+          "lastUpdateDateBracelet" : "2016-21-11 : 14:19",
+          "name" : "jean DUPONT",
+          "color" : "#FFFFFF"
+        }
+        ]
+    },
+    {
+      "id" : "1",
+      "name": "group2",
+      "creationDateGroup" : "2016-21-11 14:56",
+      "lastUpdateDateGroup" : "2016-21-11 : 15:09",
+      "bracelets" : [
+        {
+          "id" : "765",
+          "creationDateBracelet" : "2016-21-11 13:46",
+          "lastUpdateDateBracelet" : "2016-21-11 : 14:19",
+          "name" : "jean DUPONT",
+          "color" : "#FFFFFF"
+        },
+        {
+          "id" : "765",
+          "creationDateBracelet" : "2016-21-11 13:46",
+          "lastUpdateDateBracelet" : "2016-21-11 : 14:19",
+          "name" : "jean DUPONT",
+          "color" : "#FFFFFF"
+        },
+        {
+          "id" : "765",
+          "creationDateBracelet" : "2016-21-11 13:46",
+          "lastUpdateDateBracelet" : "2016-21-11 : 14:19",
+          "name" : "jean DUPONT",
+          "color" : "#FFFFFF"
+        }
+        ]
+    }
+  ]
+}

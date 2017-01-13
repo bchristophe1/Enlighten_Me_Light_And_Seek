@@ -34,3 +34,6 @@ HEADERS  += skeleton.h \
     manager_console.h
 
 FORMS    += skeleton.ui
+
+RESOURCES += \
+    ressources.qrc
