@@ -1,6 +1,9 @@
 #include "manager_group.h"
 
 #include <QThread>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QDebug>
 
 #include "helper_settings.h"
 #include "manager_console.h"
@@ -17,9 +20,38 @@ void GroupManager::on_loadFileRequest()
     ConsoleManager::GetInstance()->consoleThread->AppendConsoleBuffer(str);
 
     groups.clear();
-
     _groupCounter = STARTING_GROUP_COUNTER;
     _userCounter = STARTING_USER_COUNTER;
+
+    // Move this code into LoadDataFromFile Methods
+
+    _jsonFile.setFileName(DATA_FILE_PATH);
+    _jsonFile.open(QIODevice::ReadOnly | QIODevice::Text);
+    _dataFilePath = _jsonFile.readAll();
+    _jsonFile.close();
+    _jsonDocument = QJsonDocument::fromJson(_dataFilePath.toUtf8());
+
+    QJsonObject _jsonObject = _jsonDocument.object();
+    QJsonArray _jsonArray = _jsonObject["groups"].toArray();
+
+    QJsonObject _obj;
+
+    foreach (_jsonValue, _jsonArray) {
+
+        _obj = _jsonValue.toObject();
+
+        Group group(_obj["id"].toInt(), _obj["name"].toString());
+
+        groups.append(group);
+        _groupCounter++;
+    }
+
+
+    /*
+    groups.clear();
+    _groupCounter = STARTING_GROUP_COUNTER;
+    _userCounter = STARTING_USER_COUNTER;
+
 
     for(int i = 0; i < GROUPS_NUMBER; i++)
     {
@@ -35,7 +67,7 @@ void GroupManager::on_loadFileRequest()
 
         groups.append(group);
         _groupCounter++;
-    }
+    }*/
 
     emit refreshed();
 }
@@ -51,16 +83,6 @@ void GroupManager::on_saveFileRequest()
     ConsoleManager::GetInstance()->consoleThread->AppendConsoleBuffer(str);
 }
 
-QJsonDocument GroupManager::jsonDocument() const
-{
-    return _jsonDocument;
-}
-
-void GroupManager::setJsonDocument(const QJsonDocument &jsonDocument)
-{
-    _jsonDocument = jsonDocument;
-}
-
 void GroupManager::LoadDataFromFile(QString filePath)
 {
     QThread thread;
@@ -68,13 +90,6 @@ void GroupManager::LoadDataFromFile(QString filePath)
     connect(&thread, SIGNAL(started()), this, SLOT(on_loadFileRequest()));
 
     _dataFilePath = filePath;
-
-    _jsonFile.setFileName(filePath);
-    _jsonFile.open(QIODevice::ReadOnly | QIODevice::Text);
-    _dataFilePath = _jsonFile.readAll();
-    _jsonFile.close();
-    _jsonDocument = QJsonDocument::fromJson(_dataFilePath.toUtf8());
-
 
     thread.start();
     thread.quit();

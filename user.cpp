@@ -14,3 +14,33 @@ unsigned int User::GetGroupID()
 {
     return _groupID;
 }
+
+QString User::name() const
+{
+    return _name;
+}
+
+void User::setName(const QString &name)
+{
+    _name = name;
+}
+
+unsigned int User::groupID() const
+{
+    return _groupID;
+}
+
+void User::setGroupID(unsigned int groupID)
+{
+    _groupID = groupID;
+}
+
+unsigned int User::ID() const
+{
+    return _ID;
+}
+
+void User::setID(unsigned int ID)
+{
+    _ID = ID;
+}

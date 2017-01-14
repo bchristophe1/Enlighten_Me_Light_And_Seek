@@ -5,9 +5,13 @@
 #include <QObject>
 #include <QFile>
 #include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonValue>
 
 #include "helper_macro.h"
 #include "group.h"
+#include "user.h"
 #include "qlwi_group.h"
 
 class GroupManager : public QObject
@@ -24,8 +28,6 @@ public:
 
     QString GetDataFilePath();
 
-    QJsonDocument jsonDocument() const;
-    void setJsonDocument(const QJsonDocument &jsonDocument);
 
 public slots:
     void on_loadFileRequest();
@@ -35,6 +37,9 @@ private:
     QString _dataFilePath;
     QFile _jsonFile;
     QJsonDocument _jsonDocument;
+    QJsonObject _jsonObject;
+    QJsonArray _jsonArray;
+    QJsonValue _jsonValue;
     unsigned int _groupCounter;
     unsigned int _userCounter;
 
