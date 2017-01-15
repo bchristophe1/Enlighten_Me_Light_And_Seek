@@ -5,7 +5,7 @@
       "name": "group1",
       "creationDateGroup" : "2016-21-11 14:56",
       "lastUpdateDateGroup" : "2016-21-11 : 15:09",
-      "bracelets" : [
+      "users" : [
         {
           "id" : "765",
           "creationDateBracelet" : "2016-21-11 13:46",
@@ -14,14 +14,14 @@
           "color" : "#FFFFFF"
         },
         {
-          "id" : "765",
+          "id" : "766",
           "creationDateBracelet" : "2016-21-11 13:46",
           "lastUpdateDateBracelet" : "2016-21-11 : 14:19",
-          "name" : "jean DUPONT",
+          "name" : "Henri BOBO",
           "color" : "#FFFFFF"
         },
         {
-          "id" : "765",
+          "id" : "767",
           "creationDateBracelet" : "2016-21-11 13:46",
           "lastUpdateDateBracelet" : "2016-21-11 : 14:19",
           "name" : "jean DUPONT",
@@ -34,23 +34,23 @@
       "name": "group2",
       "creationDateGroup" : "2016-21-11 14:56",
       "lastUpdateDateGroup" : "2016-21-11 : 15:09",
-      "bracelets" : [
+      "users" : [
         {
-          "id" : "765",
+          "id" : "768",
           "creationDateBracelet" : "2016-21-11 13:46",
           "lastUpdateDateBracelet" : "2016-21-11 : 14:19",
-          "name" : "jean DUPONT",
+          "name" : "JULIE GAYOTTE",
           "color" : "#FFFFFF"
         },
         {
-          "id" : "765",
+          "id" : "769",
           "creationDateBracelet" : "2016-21-11 13:46",
           "lastUpdateDateBracelet" : "2016-21-11 : 14:19",
-          "name" : "jean DUPONT",
+          "name" : "MELODIE CHRECK",
           "color" : "#FFFFFF"
         },
         {
-          "id" : "765",
+          "id" : "770",
           "creationDateBracelet" : "2016-21-11 13:46",
           "lastUpdateDateBracelet" : "2016-21-11 : 14:19",
           "name" : "jean DUPONT",

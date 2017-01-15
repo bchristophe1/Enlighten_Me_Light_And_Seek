@@ -32,42 +32,30 @@ void GroupManager::on_loadFileRequest()
     _jsonFile.close();
     _jsonDocument = QJsonDocument::fromJson(_dataFilePath.toUtf8());
 
-    QJsonObject _jsonObject = _jsonDocument.object();
-    QJsonArray _jsonArray = _jsonObject["groups"].toArray();
+    _GroupjsonObject = _jsonDocument.object();
+    _GroupjsonArray = _GroupjsonObject["groups"].toArray();
 
     QJsonObject _obj;
 
-    foreach (_jsonValue, _jsonArray) {
+    foreach (_GroupjsonValue, _GroupjsonArray) {
 
-        _obj = _jsonValue.toObject();
+        _obj = _GroupjsonValue.toObject();
 
         Group group(_obj["id"].toString().toInt(), _obj["name"].toString());
-        groups.append(group);
-        _groupCounter++;
-    }
+        _UserjsonArray =  _obj["users"].toArray();
 
+        foreach (_UserjsonValue, _UserjsonArray) {
 
-    /*
-    groups.clear();
-    _groupCounter = STARTING_GROUP_COUNTER;
-    _userCounter = STARTING_USER_COUNTER;
+           _UserjsonObject = _UserjsonValue.toObject();
 
-
-    for(int i = 0; i < GROUPS_NUMBER; i++)
-    {
-        Group group(_groupCounter, QString("Group Name " + QString::number(_groupCounter)));
-
-        for(int j = 0; j < USERS_PER_GROUP; j++)
-        {
-            User user(_userCounter, _groupCounter, QString("User Name " + QString::number(_userCounter)));
-
-            group.users.append(user);
-            _userCounter++;
+           User user(_UserjsonObject["id"].toString().toInt(), _obj["id"].toString().toInt(), _UserjsonObject["name"].toString());
+           group.users.append(user);
+           _userCounter++;
         }
 
         groups.append(group);
         _groupCounter++;
-    }*/
+    }
 
     emit refreshed();
 }

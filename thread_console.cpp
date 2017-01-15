@@ -56,7 +56,7 @@ void ConsoleThread::run()
 
 void ConsoleThread::AppendConsoleBuffer(QString str, ConsoleTextType type)
 {
-    qDebug() << str;
+    //qDebug() << str;
 
     _consoleBuffer += QString("@") + QChar(type);
     _consoleBuffer += str;

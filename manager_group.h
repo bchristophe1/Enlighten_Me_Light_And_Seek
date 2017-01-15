@@ -37,9 +37,15 @@ private:
     QString _dataFilePath;
     QFile _jsonFile;
     QJsonDocument _jsonDocument;
-    QJsonObject _jsonObject;
-    QJsonArray _jsonArray;
-    QJsonValue _jsonValue;
+
+    QJsonObject _GroupjsonObject;
+    QJsonArray _GroupjsonArray;
+    QJsonValue _GroupjsonValue;
+
+    QJsonObject _UserjsonObject;
+    QJsonArray _UserjsonArray;
+    QJsonValue _UserjsonValue;
+
     unsigned int _groupCounter;
     unsigned int _userCounter;
 
