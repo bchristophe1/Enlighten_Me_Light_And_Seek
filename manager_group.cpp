@@ -15,6 +15,10 @@ GroupManager::GroupManager() { }
 
 GroupManager::~GroupManager() { }
 
+/**
+ * @brief GroupManager::on_loadFileRequest
+ *
+ */
 void GroupManager::on_loadFileRequest()
 {
     QString str = "Loading " + GroupManager::GetInstance()->GetDataFilePath() + "...\n";

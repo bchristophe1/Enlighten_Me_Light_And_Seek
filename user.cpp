@@ -1,5 +1,13 @@
 #include "user.h"
 
+/**
+ * @brief User::User
+ * @param ID
+ * @param groupID
+ * @param name
+ *
+ * TODO: Adding Json file attributes
+ */
 User::User(unsigned int ID, unsigned int groupID, QString name)
     : _ID(ID),
       _groupID(groupID),
