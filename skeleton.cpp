@@ -1,3 +1,5 @@
+#include <QDebug>
+
 #include "skeleton.h"
 #include "ui_skeleton.h"
 
