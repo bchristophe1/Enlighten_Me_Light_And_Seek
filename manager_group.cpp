@@ -4,6 +4,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QDebug>
+#include <QString>
 
 #include "helper_settings.h"
 #include "manager_console.h"
@@ -40,8 +41,7 @@ void GroupManager::on_loadFileRequest()
 
         _obj = _jsonValue.toObject();
 
-        Group group(_obj["id"].toInt(), _obj["name"].toString());
-
+        Group group(_obj["id"].toString().toInt(), _obj["name"].toString());
         groups.append(group);
         _groupCounter++;
     }
