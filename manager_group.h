@@ -37,8 +37,10 @@ public slots:
 
 private:
     QString _dataFilePath;
+    QString _jsonIndented;
     QFile _jsonFile;
-    QJsonDocument _jsonDocument;
+    QJsonDocument _jsonDocumentParsing;
+    QJsonDocument _jsonDocumentSerialize;
 
     QJsonObject _GroupjsonObject;
     QJsonArray _GroupjsonArray;

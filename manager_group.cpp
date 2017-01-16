@@ -5,6 +5,7 @@
 #include <QJsonArray>
 #include <QDebug>
 #include <QString>
+#include <QDir>
 
 #include "helper_settings.h"
 #include "manager_console.h"
@@ -34,9 +35,9 @@ void GroupManager::on_loadFileRequest()
     _jsonFile.open(QIODevice::ReadOnly | QIODevice::Text);
     _dataFilePath = _jsonFile.readAll();
     _jsonFile.close();
-    _jsonDocument = QJsonDocument::fromJson(_dataFilePath.toUtf8());
+    _jsonDocumentParsing = QJsonDocument::fromJson(_dataFilePath.toUtf8());
 
-    _GroupjsonObject = _jsonDocument.object();
+    _GroupjsonObject = _jsonDocumentParsing.object();
     _GroupjsonArray = _GroupjsonObject["Groups"].toArray();
 
     QJsonObject _obj;
@@ -65,6 +66,8 @@ void GroupManager::on_loadFileRequest()
     this->serialize();
 
     emit refreshed();
+
+    this->on_saveFileRequest();
 }
 
 void GroupManager::on_saveFileRequest()
@@ -72,7 +75,14 @@ void GroupManager::on_saveFileRequest()
     QString str = "Saving data to " + GroupManager::GetInstance()->GetDataFilePath() + "...\n";
     ConsoleManager::GetInstance()->consoleThread->AppendConsoleBuffer(str);
 
-    // TO DO
+    _jsonIndented = _jsonDocumentSerialize.toJson(QJsonDocument::Indented);
+
+    _jsonFile.setFileName("json/var.json");
+    _jsonFile.open(QFile::WriteOnly | QFile::Text | QFile::Truncate);
+    _jsonFile.write(_jsonDocumentSerialize.toJson());
+    _jsonFile.close();
+
+    qDebug() << QDir::current();
 
     str = "Data has been saved to " + GroupManager::GetInstance()->GetDataFilePath() + ".\n";
     ConsoleManager::GetInstance()->consoleThread->AppendConsoleBuffer(str);
@@ -124,7 +134,6 @@ QJsonDocument GroupManager::serialize()
 {
     QJsonArray groupsArray;
     QJsonObject jsonObject;
-    QJsonDocument jsonDocument;
 
     foreach (Group oGroup, this->groups) {
 
@@ -134,10 +143,10 @@ QJsonDocument GroupManager::serialize()
 
     jsonObject["Groups"] = groupsArray;
 
-    jsonDocument = QJsonDocument(jsonObject);
+    _jsonDocumentSerialize = QJsonDocument(jsonObject);
 
-    qDebug() << "Serialized Groups Document looks like " << jsonDocument;
+    qDebug() << "Serialized Groups Document looks like " << _jsonDocumentSerialize;
 
-    return jsonDocument;
+    return _jsonDocumentSerialize;
 
 }
