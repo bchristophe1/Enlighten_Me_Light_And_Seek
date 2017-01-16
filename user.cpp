@@ -1,3 +1,5 @@
+#include <QDebug>
+
 #include "user.h"
 
 /**
@@ -52,3 +54,21 @@ void User::setID(unsigned int ID)
 {
     _ID = ID;
 }
+
+
+QJsonObject User::serialize()
+{
+    QJsonObject userJson;
+
+    // QString::number
+    userJson["id"] = QString::number(this->_ID);
+    userJson["name"] = this->_name;
+
+    qDebug() << "Serialized User looks like : " << userJson;
+
+    return userJson;
+}
+
+
+
+

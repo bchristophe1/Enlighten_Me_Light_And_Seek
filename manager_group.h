@@ -8,6 +8,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonValue>
+#include <QJsonDocument>
 
 #include "helper_macro.h"
 #include "group.h"
@@ -28,6 +29,7 @@ public:
 
     QString GetDataFilePath();
 
+    QJsonDocument serialize();
 
 public slots:
     void on_loadFileRequest();

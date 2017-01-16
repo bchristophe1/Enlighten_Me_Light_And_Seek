@@ -54,8 +54,11 @@ void GroupManager::on_loadFileRequest()
 
            User user(_UserjsonObject["id"].toString().toInt(), _obj["id"].toString().toInt(), _UserjsonObject["name"].toString());
            group.users.append(user);
+
            _userCounter++;
         }
+
+        group.serialize();
 
         groups.append(group);
         _groupCounter++;

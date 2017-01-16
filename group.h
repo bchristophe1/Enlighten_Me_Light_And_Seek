@@ -1,6 +1,8 @@
 #pragma once
 
 #include <QList>
+#include <QJsonObject>
+#include <QJsonArray>
 
 #include "user.h"
 
@@ -14,6 +16,8 @@ public:
     unsigned int GetID();
     QString GetName();
     void SetName(QString name);
+
+    QJsonObject serialize();
 
 private:
     unsigned int _ID;

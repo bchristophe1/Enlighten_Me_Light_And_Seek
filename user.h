@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QString>
+#include <QJsonObject>
 
 class User
 {
@@ -18,6 +19,8 @@ public:
 
     unsigned int ID() const;
     void setID(unsigned int ID);
+
+    QJsonObject serialize();
 
 private:
     unsigned int _ID;

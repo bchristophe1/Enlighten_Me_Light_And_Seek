@@ -1,3 +1,5 @@
+#include <QDebug>
+
 #include "group.h"
 
 /**
@@ -24,4 +26,24 @@ QString Group::GetName()
 void Group::SetName(QString name)
 {
     _name = name;
+}
+
+QJsonObject Group::serialize()
+{
+    QJsonObject groupJson;
+    QJsonArray usersJsonArray;
+
+    groupJson["id"] = QString::number(this->_ID);
+    groupJson["name"] = this->_name;
+
+    foreach (User user, this->users) {
+        QJsonObject obj = user.serialize();
+        usersJsonArray.append(obj);
+    }
+
+    groupJson["users"] = usersJsonArray;
+
+    qDebug() << "Serialized Group looks like : " << groupJson;
+
+    return groupJson;
 }
