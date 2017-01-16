@@ -37,7 +37,7 @@ void GroupManager::on_loadFileRequest()
     _jsonDocument = QJsonDocument::fromJson(_dataFilePath.toUtf8());
 
     _GroupjsonObject = _jsonDocument.object();
-    _GroupjsonArray = _GroupjsonObject["groups"].toArray();
+    _GroupjsonArray = _GroupjsonObject["Groups"].toArray();
 
     QJsonObject _obj;
 
@@ -58,11 +58,11 @@ void GroupManager::on_loadFileRequest()
            _userCounter++;
         }
 
-        group.serialize();
-
         groups.append(group);
         _groupCounter++;
     }
+
+    this->serialize();
 
     emit refreshed();
 }
@@ -118,4 +118,26 @@ Group* GroupManager::GetGroupByID(unsigned int ID)
 QString GroupManager::GetDataFilePath()
 {
     return _dataFilePath;
+}
+
+QJsonDocument GroupManager::serialize()
+{
+    QJsonArray groupsArray;
+    QJsonObject jsonObject;
+    QJsonDocument jsonDocument;
+
+    foreach (Group oGroup, this->groups) {
+
+        QJsonObject obj = oGroup.serialize();
+        groupsArray.append(obj);
+    }
+
+    jsonObject["Groups"] = groupsArray;
+
+    jsonDocument = QJsonDocument(jsonObject);
+
+    qDebug() << "Serialized Groups Document looks like " << jsonDocument;
+
+    return jsonDocument;
+
 }
