@@ -43,7 +43,5 @@ QJsonObject Group::serialize()
 
     groupJson["users"] = usersJsonArray;
 
-    qDebug() << "Serialized Group looks like : " << groupJson;
-
     return groupJson;
 }

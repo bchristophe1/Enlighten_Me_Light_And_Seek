@@ -1,7 +1,10 @@
 #pragma once
 
-#define DATA_FILE_PATH ":/json/file.json"
+#define DATA_FILE_PATH "json/file.json"
 
+/**
+  TODO: Remove this unused variables
+  */
 #define GROUPS_NUMBER 7
 #define USERS_PER_GROUP 13
 

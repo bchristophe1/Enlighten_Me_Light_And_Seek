@@ -5,7 +5,7 @@
 #include <QJsonArray>
 #include <QDebug>
 #include <QString>
-#include <QDir>
+#include <QDirIterator>
 
 #include "helper_settings.h"
 #include "manager_console.h"
@@ -29,9 +29,26 @@ void GroupManager::on_loadFileRequest()
     _groupCounter = STARTING_GROUP_COUNTER;
     _userCounter = STARTING_USER_COUNTER;
 
-    // Move this code into LoadDataFromFile Methods
-
     _jsonFile.setFileName(DATA_FILE_PATH);
+
+    // Checking if json folder existing
+    if (QDir("json").exists()) {
+        ConsoleManager::GetInstance()->consoleThread->AppendConsoleBuffer("Json Folder Has Been Found\n");
+    } else {
+        ConsoleManager::GetInstance()->consoleThread->AppendConsoleBuffer("Json Folder Has Been Not Found...\n");
+        QDir().mkdir("json");
+        ConsoleManager::GetInstance()->consoleThread->AppendConsoleBuffer("Json Folder Has Been Created\n");
+    }
+
+    // Checking if json file exist
+    if (_jsonFile.exists()) {
+        ConsoleManager::GetInstance()->consoleThread->AppendConsoleBuffer("Json Config File Has Been Found\n");
+        qDebug() << "Json Config File Found";
+    } else {
+        ConsoleManager::GetInstance()->consoleThread->AppendConsoleBuffer("Json Config File Has Been NOT Found\n");
+        qDebug() << "Json Config File NOT Found";
+    }
+
     _jsonFile.open(QIODevice::ReadOnly | QIODevice::Text);
     _dataFilePath = _jsonFile.readAll();
     _jsonFile.close();
@@ -81,8 +98,6 @@ void GroupManager::on_saveFileRequest()
     _jsonFile.open(QFile::WriteOnly | QFile::Text | QFile::Truncate);
     _jsonFile.write(_jsonDocumentSerialize.toJson());
     _jsonFile.close();
-
-    qDebug() << QDir::current();
 
     str = "Data has been saved to " + GroupManager::GetInstance()->GetDataFilePath() + ".\n";
     ConsoleManager::GetInstance()->consoleThread->AppendConsoleBuffer(str);

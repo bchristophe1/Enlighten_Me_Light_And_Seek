@@ -9,6 +9,7 @@
 #include <QJsonArray>
 #include <QJsonValue>
 #include <QJsonDocument>
+#include <QDir>
 
 #include "helper_macro.h"
 #include "group.h"
@@ -39,6 +40,8 @@ private:
     QString _dataFilePath;
     QString _jsonIndented;
     QFile _jsonFile;
+    QDir _jsonRessourceDir;
+
     QJsonDocument _jsonDocumentParsing;
     QJsonDocument _jsonDocumentSerialize;
 

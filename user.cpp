@@ -60,11 +60,10 @@ QJsonObject User::serialize()
 {
     QJsonObject userJson;
 
-    // QString::number
+    // QString::number because unsigned doesn't fit
+
     userJson["id"] = QString::number(this->_ID);
     userJson["name"] = this->_name;
-
-    qDebug() << "Serialized User looks like : " << userJson;
 
     return userJson;
 }
