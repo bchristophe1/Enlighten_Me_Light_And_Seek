@@ -5,7 +5,7 @@
 #include <QJsonArray>
 #include <QDebug>
 #include <QString>
-#include <QDirIterator>
+#include <QMessageBox>
 
 #include "helper_settings.h"
 #include "manager_console.h"
@@ -47,6 +47,7 @@ void GroupManager::on_loadFileRequest()
     } else {
         ConsoleManager::GetInstance()->consoleThread->AppendConsoleBuffer("Json Config File Has Been NOT Found\n");
         qDebug() << "Json Config File NOT Found";
+        QMessageBox::critical(NULL, "Configuration File Not Found", "The configuration file doesn't exist !");
     }
 
     _jsonFile.open(QIODevice::ReadOnly | QIODevice::Text);
